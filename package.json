@@ -1,0 +1,62 @@
+{
+  "name": "k-fastify-gateway",
+  "version": "2.8.3",
+  "description": "A Node.js API Gateway that just works!",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha test/*.test.js --exit",
+    "format": "npx standard --fix",
+    "lint": "npx standard",
+    "bench-pm2": "( pm2 start benchmark/service.js -i 2 && pm2 start benchmark/gateway.js -i 4 & (sleep 5 && wrk -t8 -c40 -d30s http://127.0.0.1:8080/service/hi && pm2 delete all) )",
+    "bench": "( node benchmark/service.js & node benchmark/gateway.js & (sleep 5 && wrk -t8 -c8 -d30s http://127.0.0.1:8080/service/hi) )"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkyberneees/fastify-gateway.git"
+  },
+  "keywords": [
+    "API",
+    "gateway",
+    "fastify",
+    "http",
+    "proxy"
+  ],
+  "author": "Rolando Santamaria Maso <kyberneees@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkyberneees/fastify-gateway/issues"
+  },
+  "homepage": "https://github.com/jkyberneees/fastify-gateway#readme",
+  "dependencies": {
+    "cache-manager": "^3.2.1",
+    "fastify-reply-from": "^2.1.0",
+    "matcher": "^2.1.0",
+    "ms": "^2.1.2",
+    "on-http-end": "^1.0.2"
+  },
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "0http": "^2.3.0",
+    "axios": "^0.19.2",
+    "boom": "^7.3.0",
+    "cache-manager-ioredis": "^1.0.1",
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express-jwt": "^5.3.3",
+    "fastify": "^2.13.1",
+    "fastify-boom": "^0.1.0",
+    "helmet": "^3.22.0",
+    "middleware-if-unless": "^1.2.4",
+    "mocha": "^7.1.2",
+    "morgan": "^1.10.0",
+    "nyc": "^15.0.1",
+    "pm2": "^4.4.0",
+    "response-time": "^2.3.2",
+    "restana": "^4.3.4",
+    "standard": "^14.3.3",
+    "stream-to-array": "^2.3.0",
+    "supertest": "^4.0.2"
+  }
+}
